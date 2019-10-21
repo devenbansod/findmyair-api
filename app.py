@@ -28,4 +28,4 @@ def hello():
     coords_1 = (lat1, long1)
     coords_2 = (lat2, long2)
 
-    return 'Distance is: ' + str(geopy.distance.vincenty(coords_1, coords_2).km)
+    return 'Distance is: ' + str(geopy.distance.distance(coords_1, coords_2).km)
