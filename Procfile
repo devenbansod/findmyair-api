@@ -1,1 +1,1 @@
-web: python -m flash run
+web: python -m flask run
