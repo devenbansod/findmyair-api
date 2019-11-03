@@ -5,8 +5,8 @@
         {
             "name": "Statue of Liberty National Monument",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Statue_of_Liberty_7.jpg",
-            "latitude": "40.690159",
-            "longitude": "-74.045326"
+            "latitude": "40.690047",
+            "longitude": "-74.044586"
         }
     },
     {
@@ -15,8 +15,8 @@
         {
             "name": "Central Park",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Central_Park_-_The_Pond_%2848377220157%29.jpg/1157px-Central_Park_-_The_Pond_%2848377220157%29.jpg",
-            "latitude": "40.782864",
-            "longitude": "-73.965355"
+            "latitude": "40.782853",
+            "longitude": "-73.965183"
         }
     },
     {
@@ -25,8 +25,8 @@
         {
             "name": "Times Square",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg",
-            "latitude": "40.759010",
-            "longitude": "-73.984474"
+            "latitude": "40.758137",
+            "longitude": "-73.985489"
         }
     },
     {
@@ -35,8 +35,8 @@
         {
             "name": "Rockefeller Center",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/GE_Building_by_David_Shankbone.JPG",
-            "latitude": "40.068890",
-            "longitude": "-83.126808"
+            "latitude": "40.758968",
+            "longitude": "-73.978609"
         }
     },
     {
@@ -45,8 +45,8 @@
         {
             "name": "Brooklyn Bridge",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Brooklyn_Bridge_Postdlf.jpg",
-            "latitude": "46.788761",
-            "longitude": "-64.123238"
+            "latitude": "40.706639",
+            "longitude": "-73.996617"
         }
     },
     {
@@ -55,8 +55,8 @@
         {
             "name": "The High Line",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/High_Line_20th_Street_looking_downtown.jpg",
-            "latitude": "40.753441",
-            "longitude": "-74.003891"
+            "latitude": "40.747984",
+            "longitude": "-74.004561"
         }
     },
     {
@@ -65,8 +65,8 @@
         {
             "name": "The Metropolitan Museum of Art",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/The_MET.jpg",
-            "latitude": "38.959740",
-            "longitude": "-95.245018"
+            "latitude": "40.779591",
+            "longitude": "-73.962708"
         }
     },
     {
@@ -75,8 +75,8 @@
         {
             "name": "One World Trade Center",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/One_world_trade_center_august_2019.jpg",
-            "latitude": "42.348690",
-            "longitude": "-71.042550"
+            "latitude": "40.712978",
+            "longitude": "-74.013365"
         }
     },
     {
@@ -85,8 +85,8 @@
         {
             "name": "9/11 Memorial",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/WTCmemorialJune2012.png",
-            "latitude": "43.061890",
-            "longitude": "-73.728000"
+            "latitude": "40.711490",
+            "longitude": "-74.013665"
         }
     },
     {
@@ -95,8 +95,8 @@
         {
             "name": "Broadway",
             "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Broadway_Theaters_45th_Street_Night.jpg",
-            "latitude": "40.679352",
-            "longitude": "-73.894882"
+            "latitude": "40.763489",
+            "longitude": "-73.982741"
         }
     }
 ]
