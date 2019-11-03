@@ -1,0 +1,102 @@
+[
+    {
+        "id": "1",
+        "details":
+        {
+            "name": "Statue of Liberty National Monument",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Statue_of_Liberty_7.jpg",
+            "latitude": "40.690159",
+            "longitude": "-74.045326"
+        }
+    },
+    {
+        "id": "2",
+        "details":
+        {
+            "name": "Central Park",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Central_Park_-_The_Pond_%2848377220157%29.jpg/1157px-Central_Park_-_The_Pond_%2848377220157%29.jpg",
+            "latitude": "40.782864",
+            "longitude": "-73.965355"
+        }
+    },
+    {
+        "id": "3",
+        "details":
+        {
+            "name": "Times Square",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg",
+            "latitude": "40.759010",
+            "longitude": "-73.984474"
+        }
+    },
+    {
+        "id": "4",
+        "details":
+        {
+            "name": "Rockefeller Center",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/GE_Building_by_David_Shankbone.JPG",
+            "latitude": "40.068890",
+            "longitude": "-83.126808"
+        }
+    },
+    {
+        "id": "5",
+        "details":
+        {
+            "name": "Brooklyn Bridge",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Brooklyn_Bridge_Postdlf.jpg",
+            "latitude": "46.788761",
+            "longitude": "-64.123238"
+        }
+    },
+    {
+        "id": "6",
+        "details":
+        {
+            "name": "The High Line",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/High_Line_20th_Street_looking_downtown.jpg",
+            "latitude": "40.753441",
+            "longitude": "-74.003891"
+        }
+    },
+    {
+        "id": "7",
+        "details":
+        {
+            "name": "The Metropolitan Museum of Art",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/The_MET.jpg",
+            "latitude": "38.959740",
+            "longitude": "-95.245018"
+        }
+    },
+    {
+        "id": "8",
+        "details":
+        {
+            "name": "One World Trade Center",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/One_world_trade_center_august_2019.jpg",
+            "latitude": "42.348690",
+            "longitude": "-71.042550"
+        }
+    },
+    {
+        "id": "9",
+        "details":
+        {
+            "name": "9/11 Memorial",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/WTCmemorialJune2012.png",
+            "latitude": "43.061890",
+            "longitude": "-73.728000"
+        }
+    },
+    {
+        "id": "10",
+        "details":
+        {
+            "name": "Broadway",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Broadway_Theaters_45th_Street_Night.jpg",
+            "latitude": "40.679352",
+            "longitude": "-73.894882"
+        }
+    }
+]

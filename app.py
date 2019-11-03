@@ -1,37 +1,33 @@
 from flask import Flask
 from flask import request
+from flask import json
 
 import os
-import googlemaps
+import csv
+
+from models import cost
 
 app = Flask(__name__)
+API_KEY = os.environ.get('API_KEY', None)
+POIS = None
 
-@app.route('/')
-def hello():
-    API_KEY = os.environ.get('API_KEY', None)
-    if API_KEY is None:
-        return 'API_KEY not specified in setting up server'
+with open('./data/pois.json', 'r') as pois_file:
+    POIS = {
+        "listings": json.loads(pois_file.read())
+    }
 
-    if not request.args.get('lat1'):
-        return 'lat1 not provided'
+# MAIN APIS
+@app.route('/pois', methods = ['GET'])
+def get_pois():
+    return POIS
 
-    if not request.args.get('lat2'):
-        return 'lat2 not provided'
+@app.route('/suggested-airbnbs', methods = ['POST'])
+def get_suggested_airbnbs():
+    return request.json
 
-    if not request.args.get('long1'):
-        return 'long1 not provided'
 
-    if not request.args.get('long2'):
-        return 'long2 not provided'
 
-    lat1 = float(request.args.get('lat1'))
-    lat2 = float(request.args.get('lat2'))
-    long1 = float(request.args.get('long1'))
-    long2 = float(request.args.get('long2'))
-
-    coords_1 = (lat1, long1)
-    coords_2 = (lat2, long2)
-
-    gmaps = googlemaps.Client(API_KEY)
-
-    return gmaps.distance_matrix([coords_1], [coords_2])
+# TEST DEBUG APIS - ideally should be prepended with /debug path
+@app.route('/debug/cost')
+def get_cost_metric():
+    return cost.get_airbnb(request.args.get('id'))
