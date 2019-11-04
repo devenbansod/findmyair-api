@@ -6,6 +6,7 @@ import os
 import csv
 
 from models import cost
+from models import taxicost
 
 app = Flask(__name__)
 API_KEY = os.environ.get('API_KEY', None)
@@ -31,3 +32,12 @@ def get_suggested_airbnbs():
 @app.route('/debug/cost')
 def get_cost_metric():
     return cost.get_airbnb(request.args.get('id'))
+
+@app.route('/travel-cost', methods = ['POST'])
+def get_travel_cost():
+	data = request.data
+	data = jsonify(data)
+	return taxicost.avg_cost(data.pickupLat,data.pickupLng,data.dropLat,data.dropLng)
+
+#testing the function avg_cost
+print(taxicost.avg_cost("40.69509499999986","-74.18448899999997","40.61480534006002","-73.83009815098022"))
