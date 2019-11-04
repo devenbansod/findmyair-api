@@ -21,60 +21,59 @@ COLUMNS = {
     'total_amount': 16
 }
 
-COSTS = []
+TRIP_COSTS = []
 with open('./data/yellow_tripdata_copy.csv', 'r') as taxi_costs:
     listings = csv.reader(taxi_costs)
-    for cost in listings:
-        COSTS.append(cost)
+    for trip in listings:
+        TRIP_COSTS.append(trip)
 
-LAT_LNG = {}
+LAT_LONG = {}
 with open('./data/zone_lat_lng_copy.json', 'r') as read_file:
-    LAT_LNG = json.load(read_file)
+    LAT_LONG = json.load(read_file)
 
 
-def get_id(pickupLat,pickupLng,dropLat,dropLng): 
-    pickupLat = float(pickupLat)
-    pickupLng = float(pickupLng)
-    dropLat = float(dropLat)
-    dropLng = float(dropLng)
-    lat_lng =  LAT_LNG["features"]
-    pickupId = -1
-    dropId = -1
-    for obj in lat_lng:
+def get_neighbourhood_id(lat, lng):
+    lat_lng_map =  LAT_LONG["features"]
+    neighbourhood_id = -1
+
+    for obj in lat_lng_map:
         lng1 = float(obj["geometry"]["properties"]["bbox"][0])
         lat1 = float(obj["geometry"]["properties"]["bbox"][1])
         lng2 = float(obj["geometry"]["properties"]["bbox"][2])
         lat2 = float(obj["geometry"]["properties"]["bbox"][3])
-        if(pickupLat >= min(lat1,lat2) and pickupLat <= max(lat1,lat2)):
-            if(pickupLng >= min(lng1,lng2) and pickupLng<= max(lng1,lng2)):
-                pickupId = int(obj["geometry"]["properties"]["locationid"])
-                break;
 
-    for obj in lat_lng:
-        lng1 = float(obj["geometry"]["properties"]["bbox"][0])
-        lat1 = float(obj["geometry"]["properties"]["bbox"][1])
-        lng2 = float(obj["geometry"]["properties"]["bbox"][2])
-        lat2 = float(obj["geometry"]["properties"]["bbox"][3])
-        if(dropLat >= min(lat1,lat2) and dropLat <= max(lat1,lat2)):
-            if(dropLng >= min(lng1,lng2) and dropLng<= max(lng1,lng2)):
-                dropId = int(obj["geometry"]["properties"]["locationid"])
-                break;
+        if check_if_point_falls_in_rect(lat1, lng1, lat2, lng2, lat, lng):
+            return int(obj["geometry"]["properties"]["locationid"])
 
-    return {"pickupLocationID" : pickupId, "dropLocationId" : dropId}
+    return neighbourhood_id;
 
-def avg_cost(pickupLat,pickupLng,dropLat,dropLng):
-    obj = get_id(pickupLat,pickupLng,dropLat,dropLng)
+def avg_cost(pickup_lat, pickup_lng, drop_lat, drop_lng):
+    pickup_lat = float(pickup_lat)
+    pickup_lng = float(pickup_lng)
+    drop_lat = float(drop_lat)
+    drop_lng = float(drop_lng)
+
+    pickup_id = get_neighbourhood_id(pickup_lat, pickup_lng)
+    drop_id = get_neighbourhood_id(drop_lat, drop_lng)
+
     avg_cost = 0
     count = 0
     total_cost = 0
-    if(obj["pickupLocationID"] != -1 and obj["dropLocationId"] != -1):
-        for cost in COSTS:
-            if int(cost[COLUMNS['PULocationID']]) == obj["pickupLocationID"] and int(cost[COLUMNS['DOLocationID']]) == obj["dropLocationId"]:
-                total_cost = total_cost + float(cost[COLUMNS['total_amount']])
+
+    if pickup_id != -1 and drop_id != -1:
+        for trip in TRIP_COSTS:
+            if (
+                (int(trip[COLUMNS['PULocationID']]) == pickup_id and int(trip[COLUMNS['DOLocationID']]) == drop_id)
+                or (int(trip[COLUMNS['DOLocationID']]) == pickup_id and int(trip[COLUMNS['PULocationID']]) == drop_id)
+            ):
+                total_cost = total_cost + float(trip[COLUMNS['total_amount']])
                 count = count + 1
-            elif int(cost[COLUMNS['PULocationID']]) == obj["dropLocationId"] and int(cost[COLUMNS['DOLocationID']]) == obj["pickupLocationID"]:
-                total_cost = total_cost + float(cost[COLUMNS['total_amount']])
-                count = count + 1
-        if(count!=0):
-            avg_cost = total_cost/count
+
+        if count != 0:
+            avg_cost = total_cost / count
+
     return avg_cost
+
+def check_if_point_falls_in_rect(lat1, lng1, lat2, lng2, lat, lng):
+    if (lat >= min(lat1, lat2) and lat <= max(lat1, lat2)) and (lng >= min(lng1, lng2) and lng <= max(lng1, lng2)):
+        return True

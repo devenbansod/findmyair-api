@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flask import json
+from flask import jsonify
 
 import os
 import csv
@@ -27,17 +28,16 @@ def get_suggested_airbnbs():
     return request.json
 
 
-
 # TEST DEBUG APIS - ideally should be prepended with /debug path
-@app.route('/debug/cost')
+@app.route('/debug/cost', methods = ['GET'])
 def get_cost_metric():
     return cost.get_airbnb(request.args.get('id'))
 
-@app.route('/travel-cost', methods = ['POST'])
+@app.route('/debug/travel-cost', methods = ['POST'])
 def get_travel_cost():
-	data = request.data
-	data = jsonify(data)
-	return taxicost.avg_cost(data.pickupLat,data.pickupLng,data.dropLat,data.dropLng)
+    data = request.json
 
-#testing the function avg_cost
-print(taxicost.avg_cost("40.69509499999986","-74.18448899999997","40.61480534006002","-73.83009815098022"))
+    return str(taxicost.avg_cost(data['pickup_lat'], data['pickup_lng'], data['drop_lat'], data['drop_lng']))
+
+# print(taxicost.avg_cost("40.69509499999986","-74.18448899999997","40.61480534006002","-73.83009815098022"))
+
