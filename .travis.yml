@@ -1,2 +1,5 @@
 language: python
 script: sh run_tests.sh
+branches:
+  only:
+    master
