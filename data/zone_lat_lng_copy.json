@@ -1,0 +1,37 @@
+{
+	"type": "FeatureCollection",
+	"totalFeatures": 263,
+	"features": [{
+		"type": "Feature",
+		"id": "nyu_2451_36743.1",
+		"geometry": {
+			"type": "MultiPolygon",
+			"geometry_name": "geom",
+			"properties": {
+				"objectid": 1,
+				"shape_leng": 0.11635745319,
+				"shape_area": 0.00078230679,
+				"zone": "Newark Airport",
+				"locationid": 1,
+				"borough": "EWR",
+				"bbox": [-74.18999699999995, 40.670992999999896, -74.15306999999996, 40.707973999999865]
+			}
+		}
+	},{
+		"type": "Feature",
+		"id": "nyu_2451_36743.1",
+		"geometry": {
+			"type": "MultiPolygon",
+			"geometry_name":"geom",
+			"properties": {
+				"objectid":2,
+				"shape_leng":0.43346966679,
+				"shape_area":0.00486634038,
+				"zone":"Jamaica Bay",
+				"locationid":2,
+				"borough":"Queens",
+				"bbox":[-73.8782477932424,40.58169379478866,-73.76670827781236,40.63995327448777]
+			}
+		}
+	}]
+}
