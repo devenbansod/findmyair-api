@@ -11,16 +11,6 @@ with open('./data/pois.json', 'r') as pois_file:
     }
 
 class TestAPIs(unittest.TestCase):
-    def test_debug_cost(self):
-        with app.test_client() as c:
-
-            # test debug cost
-            rv = c.get('/debug/cost?id=21456')
-            json_data = rv.get_json()
-
-            assert json_data != {}
-            assert json_data['id'] == '21456'
-
     def test_debug_travel_cost(self):
         with app.test_client() as c:
             # test debug travel cost
@@ -42,10 +32,19 @@ class TestAPIs(unittest.TestCase):
     def test_suggested_airbnbs(self):
         with app.test_client() as c:
             # test suggested airbnbs
-            expected_response = {'a' : 1}
-            rv = c.post('/suggested-airbnbs', json=expected_response)
+            request = {
+                "preferences": {
+                    "cost": 0.34,
+                    "travel": 0.54,
+                    "safety": 0.12
+                },
+                "iternaries": [
+                    [8, 5, 1],
+                    [9, 2, 7]
+                ]
+            }
+            rv = c.post('/suggested-airbnbs', json=request)
             assert rv.status_code == 200
-            assert rv.get_json() == expected_response
 
 if __name__ == "__main__":
     unittest.main()
