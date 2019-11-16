@@ -69,7 +69,7 @@ def get_listings_with_scores(cost_pref, travel_cost_pref, safety_pref, iternarie
             'id': airbnb[listings.get_column_index('id')],
             'url': airbnb[listings.get_column_index('listing_url')],
             'latitude': airbnb[listings.get_column_index('latitude')],
-            'latitude': airbnb[listings.get_column_index('latitude')],
+            'longitude': airbnb[listings.get_column_index('longitude')],
             'cost_score': airbnb[listings.get_column_index('cost_score')],
             'suitability_score': suitability_score
         })
