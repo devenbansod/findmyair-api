@@ -5,13 +5,17 @@ from flask import jsonify
 
 import os
 import csv
-from models import listings
+import numpy as np
 
+from models import listings
+from models import crime_rating
 from models import taxicost
 
 app = Flask(__name__)
 API_KEY = os.environ.get('API_KEY', None)
 POIS = None
+
+crime_scores = np.load('./data/crime_scores.npy', mmap_mode='r+')
 
 with open('./data/pois.json', 'r') as pois_file:
     POIS = {
@@ -64,6 +68,7 @@ def get_listings_with_scores(cost_pref, travel_cost_pref, safety_pref, iternarie
     for airbnb in LISTINGS.itertuples():
         cost_score = airbnb[listings.get_column_index('cost_score')]
         suitability_score = cost_score * cost_pref
+        safety_score = crime_scores[airbnb] * safety_pref
 
         ret.append({
             'id': airbnb[listings.get_column_index('id')],
@@ -71,7 +76,8 @@ def get_listings_with_scores(cost_pref, travel_cost_pref, safety_pref, iternarie
             'latitude': airbnb[listings.get_column_index('latitude')],
             'latitude': airbnb[listings.get_column_index('latitude')],
             'cost_score': airbnb[listings.get_column_index('cost_score')],
-            'suitability_score': suitability_score
+            'suitability_score': suitability_score,
+            'safety_score': safety_score
         })
 
     return ret
