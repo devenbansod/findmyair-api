@@ -64,14 +64,14 @@ def get_listings_with_scores(cost_pref, travel_cost_pref, safety_pref, iternarie
     for airbnb in LISTINGS.itertuples():
         cost_score = airbnb[listings.get_column_index('cost_score')]
         suitability_score = cost_score * cost_pref
-
         ret.append({
             'id': airbnb[listings.get_column_index('id')],
             'url': airbnb[listings.get_column_index('listing_url')],
             'latitude': airbnb[listings.get_column_index('latitude')],
             'longitude': airbnb[listings.get_column_index('longitude')],
             'cost_score': airbnb[listings.get_column_index('cost_score')],
-            'suitability_score': suitability_score
+            'suitability_score': suitability_score,
+            'name': airbnb[listings.get_column_index('name')]
         })
 
     return ret
