@@ -89,7 +89,8 @@ def get_listings_with_scores(cost_pref, travel_cost_pref, safety_pref, iternarie
             'cost_score': cost_score,
             'safety_score': crime_score,
             'travel_score': taxi_cost,
-            'suitability_score': suitability_score
+            'suitability_score': suitability_score,
+            'name': airbnb[listings.get_column_index('name')]
         })
 
     return ret

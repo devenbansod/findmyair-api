@@ -28,7 +28,7 @@ COLUMNS = {
     'total_amount': 16
 }
      
-TRIP_COSTS = pd.read_csv('data/yellow_tripdata_jan_2018.csv', memory_map=True)
+# TRIP_COSTS = pd.read_csv('data/yellow_tripdata_jan_2018.csv', memory_map=True)
 
 LAT_LONG = {}
 with open('data/zone_lat_lng.json', 'r') as read_file:
