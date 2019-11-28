@@ -98,5 +98,45 @@
             "latitude": "40.763489",
             "longitude": "-73.982741"
         }
+    },
+    {
+        "id": "11",
+        "details":
+        {
+            "name": "Green-Wood Cemetery",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/2015_Green-Wood_Cemetery_Gate_from_inside.jpg",
+            "latitude": "40.658173",
+            "longitude": "-73.993731"
+        }
+    },
+    {
+        "id": "12",
+        "details":
+        {
+            "name": "Chrysler Building",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Chrysler_Building_by_David_Shankbone_Retouched.jpg",
+            "latitude": "40.752515",
+            "longitude": "-73.974172"
+        }
+    },
+    {
+        "id": "13",
+        "details":
+        {
+            "name": "Guggenheim Museum",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/NYC_-_Guggenheim_Museum.jpg",
+            "latitude": "40.658173",
+            "longitude": "-73.993731"
+        }
+    },
+    {
+        "id": "14",
+        "details":
+        {
+            "name": "Green-Wood Cemetery",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/2015_Green-Wood_Cemetery_Gate_from_inside.jpg",
+            "latitude": "40.783069",
+            "longitude": "-73.958412"
+        }
     }
 ]
