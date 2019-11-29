@@ -1,7 +1,12 @@
 from pandas import read_csv
-from models import cost
+import numpy as np
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
-LISTINGS = read_csv('data/listings-filtered.csv', index_col=0)
+LISTINGS = read_csv("data/listings-filtered.csv", index_col=0)
+# Filter rows with price as 0.
+LISTINGS = LISTINGS[LISTINGS.price>0]
+LISTINGS = LISTINGS.reset_index(drop=True)
+
 COLUMNS = {
     'id': 0,
     'listing_url': 1,
@@ -33,8 +38,24 @@ COLUMNS = {
     'cost_score': 27
 }
 
-# To be able to do this here since cost scores always remain the same
-cost.init_cost_scores(LISTINGS)
+def init_cost_scores():
+    global LISTINGS
+    scaler = MinMaxScaler()
+
+    LISTINGS['cost_score'] = LISTINGS.apply(lambda row: row.price, axis = 1) 
+    df =  LISTINGS['cost_score'].copy()
+
+    # with normalized price
+    # LISTINGS[['cost_score']] = scaler.fit_transform(LISTINGS[['cost_score']])
+    perc_75 = np.percentile(df, 75)
+    min_score = min(df)
+    mask = df > perc_75
+    df[mask] = 1
+    df[~mask] = (df[~mask] - min_score)/perc_75
+    LISTINGS['cost_score'] = df
+
+    # LISTINGS.loc[LISTINGS.cost_score <= perc_75]['cost_score'] = ((LISTINGS.loc[LISTINGS.cost_score < perc_75]['cost_score'] - min_score)/perc_75)
+    # print(LISTINGS.cost_score.describe())
 
 def get_all_listings():
     """
@@ -44,3 +65,6 @@ def get_all_listings():
 
 def get_column_index(col_str):
     return COLUMNS[col_str]
+
+# To be able to do this here since cost scores always remain the same
+init_cost_scores()

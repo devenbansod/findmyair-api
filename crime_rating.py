@@ -3,6 +3,11 @@ import pandas as pd
 import numpy as np
 from os import path
 import gc
+import tqdm
+from sklearn.preprocessing import MinMaxScaler
+
+from models import listings
+
 def distance(lat1, lon1, nlat2, nlon2):
     p = 0.017453292519943295     
     a = 0.5 - np.cos((nlat2 - lat1) * p)/2 + np.cos(lat1 * p) * np.cos(nlat2 * p) * (1 - np.cos((nlon2 - lon1) * p)) / 2
@@ -44,6 +49,11 @@ def crime_score(crime_weight, distance_matrix):
     for i in range(num_airbnb):
         crime_score[i] = np.sum(crime_weight[np.where(distance_matrix[i,:] <= 2)]) + (0.5 * np.sum(crime_weight[np.where((distance_matrix[i,:] < 5) & (distance_matrix[i,:] > 2))]))
 
+
+    scaler = MinMaxScaler()
+    crime_score = np.expand_dims(crime_score,1)
+    crime_score = scaler.fit_transform(crime_score)
+
     return crime_score
 
 def set_weight(crime_dataset):
@@ -60,8 +70,8 @@ def set_weight(crime_dataset):
 if __name__ == "__main__":
     #Import data here
 
-    airbnb_dataset = pd.read_csv('data/listings-filtered.csv')
-    crime_dataset = pd.read_csv('data/crime_rate_filtered.csv')
+    airbnb_dataset = listings.get_all_listings()
+    crime_dataset = pd.read_csv('data/crime-rate-filtered.csv')
 
     crime_weight = set_weight(crime_dataset)
 
@@ -69,7 +79,6 @@ if __name__ == "__main__":
 
     crime_scores = crime_score(crime_weight, distance_matrix)
 
-    # np.save("crime_scores", crime_scores)
-    print (np.argmin(crime_score))
+    np.save("data/crime_scores.npy", crime_scores)
     
     
