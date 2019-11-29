@@ -29,7 +29,8 @@ COLUMNS = {
 }
      
 # TRIP_COSTS = pd.read_csv('data/yellow_tripdata_jan_2018.csv', memory_map=True)
-TRIP_COSTS = None
+# Initializing to empty data frame to avoid errors ahead.
+TRIP_COSTS = pd.DataFrame()
 
 LAT_LONG = {}
 with open('data/zone_lat_lng.json', 'r') as read_file:
