@@ -59,8 +59,7 @@ def get_suggested_airbnbs():
     review_scores_on_page = np.array([REVIEW_SENTIMENTS[str(ids)]['average_sentiment'] for ids in ids_on_page])
     sorted_args = np.argsort(review_scores_on_page)
     review_sorted_listings = list(np.array(listings_on_page)[sorted_args])
-    print(review_scores_on_page)
-    print(ids_on_page)
+    
     return {
         'suggestions': review_sorted_listings,
         'count': count,
