@@ -117,6 +117,7 @@ def get_listings_with_scores(cost_pref, travel_cost_pref, safety_pref, iternarie
             'safety_score': crime_score,
             'travel_score': taxi_score,
             'suitability_score': suitability_score,
+            'average_sentiment': REVIEW_SENTIMENTS[str(airbnb_id)]['average_sentiment'],
             'name': airbnb[listings.get_column_index('name')]
         })
 
